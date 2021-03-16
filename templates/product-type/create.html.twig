@@ -1,0 +1,27 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include('profile-expert/navigation.html.twig') %}
+
+    <div class="container">
+        <div class="row flex-column flex-sm-row mt-4">
+            <div class="col-md-3">
+                {% include('product/left-panel.html.twig') %}
+            </div>
+            <div class="col-md-9">
+                <h1 class="pb-3">Product type creating</h1>
+
+                <div class="col-sm-12 pb-4">
+                    {{ form_start(form) }}
+                    {{ form_row(form.type) }}
+                    {{ form_end(form) }}
+                </div>
+
+                {% include('flashes.html.twig') %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

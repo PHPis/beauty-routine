@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include('profile/navigation.html.twig') %}
+
+    <div class="container">
+        <div class="row flex-column flex-sm-row mt-4">
+            <div class="col-md-3">
+                {% include('routine/user.left-panel.html.twig') %}
+            </div>
+            <div class="col-md-9">
+
+                <h4 class="pb-4">Number of days: {{ routine.getRoutineDays.count }}</h4>
+
+                <div class="routine-sub-{{ routine.id }}">
+                    {% if user not in routine.getSubscriber %}
+                        <button onclick="routineSub('{{ path('user.sub.routine', {id: routine.id}) }}', {{ routine.id }})" class="btn btn-primary mb-2">Subscribe</button>
+                    {% endif %}
+                </div>
+
+                <div class="card-deck">
+                    {% for day in routine.getRoutineDays %}
+                        <div class="col-sm-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Number of day: {{ day.dayOrder }}</h5>
+                                    <h5 class="card-title">Recommendations: {{ day.recommends }}</h5>
+                                    {% for product in day.getProducts %}
+                                        {% if product.photo %}
+                                            <div class="row no-gutters mt-2">
+                                                <div class="col-md-4">
+                                                    {% if product.photo %}
+                                                        <img src="{{ asset(product.photo) }}" class="card-img" alt="">
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="pl-1">
+                                                        <p class="card-text">Name: {{ product.name }}</p>
+                                                        <p class="card-text">Brand: {{ product.brand }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr/>
+                                        {% else %}
+                                            <p class="card-text">Name: {{ product.name }}</p>
+                                            <p class="card-text">Brand: {{ product.brand }}</p>
+                                            <hr/>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="card-footer">
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

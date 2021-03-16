@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="container justify-content-center pt-5" style="
+    height: 50vh;
+    min-height: 300px;
+    border: 1px solid #d2cdcd;
+    margin-top: 50px;
+    border-radius: 20px;
+    background: #f3f3f3;
+">
+        <div class="row justify-content-center pt-5">
+            <h1>Beauty Routine</h1>
+        </div>
+        <div class="row justify-content-center">
+            <div class="py-5 pr-5">
+                <a href="{{ path('app.register') }}" class="btn" style="min-width: 150px;">Registration</a>
+            </div>
+            <div class="py-5">
+                <a href="{{ path('app.login') }}" class="btn"  style="min-width: 150px;">Login</a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+        </div>
+    </div>
+
+{% endblock %}

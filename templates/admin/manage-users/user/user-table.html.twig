@@ -1,0 +1,53 @@
+<h4>Total users number: ({{ users.getTotalItemCount }})</h4>
+<table  class="table table-responsive-sm pt-3">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Status</th>
+{#        <th scope="col">Edit</th>#}
+{#        <th scope="col">Delete</th>#}
+    </tr>
+    {% for user in users %}
+        <tr>
+            <th scope="row">
+                {{ loop.index }}
+            </th>
+            <td>
+                {{ user.id }}
+            </td>
+            <td>
+                {{ user.name }}
+            </td>
+            <td>
+                {{ user.email }}
+            </td>
+            <td>
+                {% if not user.isValid %}
+                    <span class="badge badge-danger">  не подтверждён </span>
+                {% endif %}
+            </td>
+{#            <td class="exist-{{ user.id }}">#}
+{#                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseCard{{ user.id }}" aria-expanded="false" aria-controls="collapseCard{{ user.id }}">#}
+{#                    Edit#}
+{#                </button>#}
+{#            </td>#}
+{#            <td class="exist-{{ user.id }}">#}
+{#                <button onclick="deleteFromTable('{{ path('admin.users.delete', {id: user.id}) }}', {{ user.id }})" class="btn">Delete</button>#}
+{#            </td>#}
+        </tr>
+        <tr>
+            <td colspan="8">
+                <div class="collapse" id="collapseCard{{ user.id }}">
+                    <div class="card card-body">
+                        User editing
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    {% endfor %}
+
+</table>
+{{ knp_pagination_render(users) }}

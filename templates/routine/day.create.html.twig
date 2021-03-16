@@ -1,0 +1,26 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include('profile-expert/navigation.html.twig') %}
+    <div class="container">
+        <div class="row flex-column flex-sm-row mt-4">
+            <div class="col-md-3">
+                {% include('routine/left-panel.html.twig') %}
+            </div>
+            <div class="col-md-9">
+                <h1 class="pb-3">Care day creating</h1>
+                <p>It would be the {{ routine.getRoutineDays|length + 1 }} day in routine</p>
+                <div class="col-sm-12 pb-4">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
+
+                {% include('flashes.html.twig') %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
